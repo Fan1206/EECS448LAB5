@@ -8,7 +8,7 @@ if ($mysqli->connect_errno) {
     exit();
 }
 
-$query = $mysqli->query("SELECT content FROM Posts WHERE author_id='$author'");
+$query = $mysqli->query("SELECT post_id,content FROM Posts WHERE author_id='$author'");
 if($result= $query)
 {
     echo"Author ($author) Posts";
@@ -26,22 +26,21 @@ if($result= $query)
           exit();
         }
     echo "<table border=1 width = 'fit'>";
-    echo "<tr>
-        <th>Posts</th>
-         </tr>";
     /*echo "<tr>
-        <th>Post ID</th>
         <th>Posts</th>
          </tr>";*/
+    echo "<tr>
+        <th>Post ID</th>
+        <th>Posts</th>
+         </tr>";
 
          /*$query2 = "SELECT post_id FROM Posts WHERE author_id = '$author'";
          $result2 = $mysqli->query($query2);
          $row2= $result->fetch_assoc();*/
 
   while ($row = $result->fetch_assoc()) {
-    echo "<tr>";
-    /*<td>". $row2["post_id"];
-    echo "</td>";*/
+    echo "<tr><td>". $row["post_id"];
+    echo "</td>";
     echo  "<td>". $row["content"]; 
     echo "</td></tr>";
 
